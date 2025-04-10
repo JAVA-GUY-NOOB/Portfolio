@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="welcome-message">Welcome to My Portfolio!</div>
+    <header>
+        <nav>
+            <h1>My Portfolio</h1>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>This is a brief bio about me. I love creating visually stunning and functional websites!</p>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-bubbles">
+            <div class="bubble star" data-project="Project 1" style="background: linear-gradient(to bottom, #ffcc00, #ff9900);">
+                <span class="project-name">Project 1</span>
+            </div>
+            <div class="bubble star" data-project="Project 2" style="background: linear-gradient(to bottom, #00ccff, #0099cc);">
+                <span class="project-name">Project 2</span>
+            </div>
+            <div class="bubble star" data-project="Project 3" style="background: linear-gradient(to bottom, #ff6699, #ff3366);">
+                <span class="project-name">Project 3</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for project details -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description">Details about the project will appear here.</p>
+        </div>
+    </div>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form>
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Enter your email address" required aria-label="Email Address">
+            <textarea placeholder="Leave your message here..." required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <footer>
+        <p>Thanks for visiting!</p>
+        <button id="goodbye-button">Goodbye</button>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
