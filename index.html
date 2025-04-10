@@ -1,65 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Add to head -->
+<meta name="description" content="Professional Web Developer specializing in modern web applications and performant user experiences">
+<meta property="og:image" content="social-preview.png">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "jobTitle": "Full Stack Developer",
+    "url": "https://yourportfolio.com",
+    "sameAs": [
+        "https://linkedin.com/in/yourprofile",
+        "https://github.com/yourprofile"
+    ]
+}
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400&family=Roboto:wght@400&family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="welcome-message">Welcome to My Portfolio!</div>
-    <header>
-        <nav>
-            <h1>My Portfolio</h1>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>This is a brief bio about me. I love creating visually stunning and functional websites!</p>
-    </section>
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-bubbles">
-            <div class="bubble star" data-project="Project 1" style="background: linear-gradient(to bottom, #ffcc00, #ff9900);">
-                <span class="project-name">Project 1</span>
-            </div>
-            <div class="bubble star" data-project="Project 2" style="background: linear-gradient(to bottom, #00ccff, #0099cc);">
-                <span class="project-name">Project 2</span>
-            </div>
-            <div class="bubble star" data-project="Project 3" style="background: linear-gradient(to bottom, #ff6699, #ff3366);">
-                <span class="project-name">Project 3</span>
-            </div>
-        </div>
+    <!-- Welcome Screen -->
+    <section id="welcome-screen">
+        <h1>Knock Knock!</h1>
+        <p>Who's there? It's your portfolio!</p>
+        <button id="enter-button">Enter</button>
     </section>
 
-    <!-- Modal for project details -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="modal-title"></h3>
-            <p id="modal-description">Details about the project will appear here.</p>
-        </div>
+    <!-- Main Website -->
+    <main id="main-content" class="hidden">
+        <header>
+            <nav>
+                <div class="header-profile">
+                    <img src="images/your-photo-icon.jpg" 
+                         alt="Profile Icon"
+                         class="header-photo">
+        
+                <h1>My Portfolio</h1>
+                <ul>
+                    <li><a href="#" data-tab="about">About</a></li>
+                    <li><a href="#" data-tab="projects">Projects</a></li>
+                    <li><a href="#" data-tab="contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+        </header>
+        <!-- Add to header -->
+<div class="cta-banner">
+    <p>🚀 Available for new projects! <button id="hire-me">Hire Me</button></p>
+</div>
+
+<!-- Add to contact section -->
+<div class="social-proof">
+    <p>Trusted by:</p>
+    <div class="client-logos">
+        <img src="client1.svg" alt="Client 1">
+        <img src="client2.svg" alt="Client 2">
     </div>
+</div>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <form>
-            <input type="text" placeholder="Your name" required>
-            <input type="email" placeholder="Enter your email address" required aria-label="Email Address">
-            <textarea placeholder="Leave your message here..." required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
-    <footer>
-        <p>Thanks for visiting!</p>
-        <button id="goodbye-button">Goodbye</button>
-    </footer>
+        <!-- Floating Bubbles -->
+        <div class="bubbles-container">
+          <!-- Add to bubbles container -->
+<div class="bubble profile-bubble" role="button" aria-label="View profile">
+    <img src="images/your-photo-icon.jpg" 
+         alt="Profile Photo"
+         class="bubble-photo">
+</div>  
+            <div class="bubble" data-tab="about" role="button" aria-label="About Me section">About Me</div>
+            <div class="bubble" data-tab="projects" role="button" aria-label="Projects section">Projects</div>
+            <div class="bubble" data-tab="contact" role="button" aria-label="Contact section">Contact</div>
+        </div>
+
+        <!-- Tabbed Sections -->
+        <section id="about" class="tab-content gradient-bg active">
+            <h2>About Me</h2>
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                    alt="Professional Web Developer - gideon murimi"
+                    class="profile-photo"
+                    loading="eager"
+                    width="600"
+                    height="600">
+        
+                         alt="[Your Name] - Professional Web Developer"
+                         class="profile-photo"
+                         loading="eager">
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="profile-intro">
+                    <h2>Hi, I'm <span class="highlight">[gideon murimi]</span></h2>
+                    <p class="tagline">Full-Stack Developer & UI Specialist</p>
+                </div>
+            </div>
+        
+            <p>This is a passionate developer creating visually stunning and functional websites that are visual appealing!</p>
+        </section>
+        <section id="projects" class="tab-content gradient-bg">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project 1" loading="lazy">
+                    <h3>E-Commerce Site</h3>
+                    <p>Built with React and Node.js</p>
+                    <a href="#" class="project-link">View Demo</a>
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1556742205-e10c7506a3a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="E-Commerce Platform" loading="lazy">
+                        <div class="project-content">
+                            <h3>Next.js E-Commerce</h3>
+                            <div class="tech-tags">
+                                <span>Next.js</span>
+                                <span>TypeScript</span>
+                                <span>Stripe</span>
+                                <span>Tailwind</span>
+                            </div>
+                            <p>Full-stack e-commerce platform with real-time inventory management and Stripe integration. Handles 500+ daily transactions.</p>
+                            <div class="project-links">
+                                <a href="#" class="demo-link" aria-label="Live demo of E-Commerce project">Live Demo</a>
+                                <a href="#" class="code-link" aria-label="View source code for E-Commerce project">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Social Media Dashboard -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="Social Media Dashboard" loading="lazy">
+                        <div class="project-content">
+                            <h3>Social Media Analytics</h3>
+                            <div class="tech-tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                                <span>D3.js</span>
+                            </div>
+                            <p>Real-time social media dashboard tracking 10k+ users with data visualization and sentiment analysis features.</p>
+                            <div class="project-links">
+                                <a href="#" class="demo-link" aria-label="Live demo of Analytics project">Case Study</a>
+                                <a href="#" class="code-link" aria-label="View source code for Analytics project">API Docs</a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- AI Chat Application -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1640836579090-86c5e0feadf3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="AI Chat Interface" loading="lazy">
+                        <div class="project-content">
+                            <h3>AI Chat Assistant</h3>
+                            <div class="tech-tags">
+                                <span>Python</span>
+                                <span>TensorFlow</span>
+                                <span>WebSocket</span>
+                                <span>GPT-4</span>
+                            </div>
+                            <p>Context-aware chatbot using transformer models with 95% accuracy in customer service scenarios.</p>
+                            <div class="project-links">
+                                <a href="#" class="demo-link" aria-label="Try AI Chat prototype">Try Prototype</a>
+                                <a href="#" class="code-link" aria-label="View research paper for AI project">White Paper</a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Portfolio Builder -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" 
+                             alt="Portfolio Builder Platform" loading="lazy">
+                        <div class="project-content">
+                            <h3>Portfolio Generator</h3>
+                            <div class="tech-tags">
+                                <span>SvelteKit</span>
+                                <span>Firebase</span>
+                                <span>AWS</span>
+                                <span>Figma</span>
+                </div>
+                <!-- Add to About section -->
+<div class="trust-badges">
+    <div class="badge">
+        <span>5+</span>
+        <p>Years Experience</p>
+    </div>
+    <div class="badge">
+        <span>50+</span>
+        <p>Projects Completed</p>
+    </div>
+    <div class="badge">
+        <img src="linkedin-verified.png" alt="Verified Professional">
+    </div>
+</div>
+
+<!-- Add before contact form -->
+<section class="testimonials">
+    <h3>Client Testimonials</h3>
+    <div class="testimonial-carousel">
+        <!-- Client quotes here -->
+    </div>
+</section>
+                <!-- Add more cards -->
+            </div>
+        </section>
+        <section id="contact" class="tab-content gradient-bg">
+            <h2>Contact</h2>
+            <form id="contact-form">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Your name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email address" required aria-label="Email Address">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Leave your message here..." required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+        <div id="live-region" aria-live="polite" class="sr-only"></div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
+<img src="images/your-photo.webp"
+        alt="[Your Real Name] smiling in professional attire"
+        class="profile-photo"
+        loading="eager"
+        width="600"
+        height="600">
+
+        <img srcset="images/your-photo-600.webp 600w,
+             images/your-photo-300.webp 300w"
+     sizes="(max-width: 768px) 300px,
+            600px"
+     src="images/your-photo-600.webp"
+     alt="Professional headshot">
+
+     <img srcset="profile-600.webp 600w,
+             profile-300.webp 300w"
+     sizes="(max-width: 768px) 300px,
+            600px"
+     src="profile-600.webp"
+     alt="Professional web developer gideon murimi">
+     <!-- Abstract avatar -->
+<img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=JohnDoe" 
+alt="Temporary avatar for John Doe"
+class="profile-photo">
+
+<!-- Initials avatar -->
+<div class="avatar-placeholder">
+JD
+</div>
+
+<style>
+.avatar-placeholder {
+width: 200px;
+height: 200px;
+background: var(--accent-color);
+color: white;
+font-size: 3rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+font-family: 'Poppins', sans-serif;
+}
+</style>
