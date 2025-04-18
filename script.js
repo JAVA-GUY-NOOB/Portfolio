@@ -46,10 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Contact Form Submission
     const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        alert('Message sent successfully!');
-        contactForm.reset();
+        const formData = new FormData(contactForm);
+
+        try {
+            const response = await fetch('https://formspree.io/f/your-real-form-id', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                showToast('Message sent successfully!');
+                contactForm.reset();
+            } else {
+                showToast('Error sending message. Please try again.', 'error');
+            }
+        } catch (error) {
+            showToast('Error sending message. Please try again.', 'error');
+        }
     });
 
     // Initial activation
@@ -66,6 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
         });
     });
+
+    // Initialize typing animation for the welcome screen
+    typeWriter('dynamic-text', ['Full Stack Developer', 'Web Enthusiast', 'Problem Solver']);
 });
 // Handle bubble navigation
 document.querySelectorAll('.bubble').forEach(bubble => {
@@ -148,12 +167,25 @@ const initSkillsChart = () => {
     new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: ['React', 'Node.js', 'UI/UX', 'AWS', 'Python'],
+            labels: ['React', 'Node.js', 'UI/UX', 'AWS', 'Python', 'SQL', 'Docker'],
             datasets: [{
                 label: 'Technical Skills',
-                data: [95, 85, 90, 75, 80],
-                backgroundColor: 'rgba(78, 205, 196, 0.2)'
+                data: [95, 85, 90, 75, 80, 70, 65],
+                backgroundColor: 'rgba(78, 205, 196, 0.2)',
+                borderColor: 'rgba(78, 205, 196, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(78, 205, 196, 1)'
             }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                    grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                    ticks: { display: false }
+                }
+            }
         }
     });
 };
@@ -161,7 +193,10 @@ const initSkillsChart = () => {
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then(() => console.log('Service Worker registered'))
-        .catch(err => console.log('SW registration failed'));
+        .catch(err => {
+            console.error('Service Worker registration failed:', err);
+            showToast('Offline support is unavailable. Please check your connection.', 'error');
+        });
 }
 
 // Toast notification
@@ -173,28 +208,6 @@ const showToast = (message, type = 'success') => {
     setTimeout(() => toast.remove(), 3000);
 };
 
-// Form submission with Fetch API
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(contactForm);
-
-    try {
-        const response = await fetch('https://formspree.io/f/your-form-id', {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            showToast('Message sent successfully!');
-            contactForm.reset();
-        } else {
-            showToast('Error sending message. Please try again.', 'error');
-        }
-    } catch (error) {
-        showToast('Error sending message. Please try again.', 'error');
-    }
-});
 // Real-time typing animation
 const typeWriter = (elementId, texts, speed = 100) => {
     let currentText = 0;
@@ -226,12 +239,22 @@ const typeWriter = (elementId, texts, speed = 100) => {
 };
 
 // Initialize typing animation for the welcome screen
-typeWriter('dynamic-text', ['Full Stack Developer', 'Web Enthusiast', 'Problem Solver']);
-
-// Initialize in DOMContentLoaded:
 typeWriter('dynamic-text', ['Web Developer', 'UI Specialist', 'Full Stack Engineer']);
 
 // Hide loader after page load
 window.addEventListener('load', () => {
     document.getElementById('loader').style.display = 'none';
 });
+
+// Lazy loading for sections
+const lazySections = document.querySelectorAll('.tab-content');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+lazySections.forEach(section => observer.observe(section));
