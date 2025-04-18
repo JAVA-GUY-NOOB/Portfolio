@@ -1,19 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Welcome Screen
     const enterButton = document.getElementById('enter-button');
     const welcomeScreen = document.getElementById('welcome-screen');
     const mainContent = document.getElementById('main-content');
-    
+
+    // Handle "View Portfolio" button click
     enterButton.addEventListener('click', () => {
         welcomeScreen.classList.add('hidden');
         mainContent.classList.remove('hidden');
     });
 
-    // Theme Toggle
+    // Theme Toggle Functionality
     const themeToggle = document.getElementById('theme-toggle');
+
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    // Add event listener to toggle theme
     themeToggle.addEventListener('click', () => {
-        document.documentElement.toggleAttribute('data-theme');
-        themeToggle.textContent = document.documentElement.hasAttribute('data-theme') ? '☀️' : '🌙';
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('theme', newTheme); // Save the theme preference
     });
 
     // Tab Functionality
@@ -34,18 +44,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Contact Form
+    // Contact Form Submission
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Add form submission logic here
         alert('Message sent successfully!');
         contactForm.reset();
     });
 
     // Initial activation
     activateTab('about');
+
+    // Initialize the skills radar chart
+    initSkillsChart();
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
 });
+// Handle bubble navigation
+document.querySelectorAll('.bubble').forEach(bubble => {
+    bubble.addEventListener('click', () => {
+        const targetId = bubble.getAttribute('data-tab');
+        document.querySelectorAll('.tab-content').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(targetId).classList.add('active');
+    });
+});
+
+// Handle section button clicks
+document.querySelectorAll('.section-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-tab');
+        document.querySelectorAll('.tab-content').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(targetId).classList.add('active');
+    });
+});
+
 // Add ripple effect to bubbles
 document.querySelectorAll('.bubble').forEach(bubble => {
     bubble.addEventListener('click', function(e) {
@@ -90,6 +133,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Smooth scroll for navigation links and bubbles
+document.querySelectorAll('[data-tab], .nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-tab') || link.getAttribute('href').substring(1);
+        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
 // Skills radar chart
 const initSkillsChart = () => {
     const ctx = document.getElementById('skills-chart').getContext('2d');
@@ -112,24 +164,35 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.log('SW registration failed'));
 }
 
+// Toast notification
+const showToast = (message, type = 'success') => {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+};
+
 // Form submission with Fetch API
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(contactForm);
-    
+
     try {
         const response = await fetch('https://formspree.io/f/your-form-id', {
             method: 'POST',
             body: formData,
-            headers: {'Accept': 'application/json'}
+            headers: { 'Accept': 'application/json' }
         });
-        
+
         if (response.ok) {
             showToast('Message sent successfully!');
             contactForm.reset();
+        } else {
+            showToast('Error sending message. Please try again.', 'error');
         }
     } catch (error) {
-        showToast('Error sending message. Please try again.');
+        showToast('Error sending message. Please try again.', 'error');
     }
 });
 // Real-time typing animation
@@ -162,5 +225,13 @@ const typeWriter = (elementId, texts, speed = 100) => {
     type();
 };
 
+// Initialize typing animation for the welcome screen
+typeWriter('dynamic-text', ['Full Stack Developer', 'Web Enthusiast', 'Problem Solver']);
+
 // Initialize in DOMContentLoaded:
 typeWriter('dynamic-text', ['Web Developer', 'UI Specialist', 'Full Stack Engineer']);
+
+// Hide loader after page load
+window.addEventListener('load', () => {
+    document.getElementById('loader').style.display = 'none';
+});
