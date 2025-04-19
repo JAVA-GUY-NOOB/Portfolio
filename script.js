@@ -4,10 +4,36 @@ try {
         const welcomeScreen = document.getElementById('welcome-screen');
         const mainContent = document.getElementById('main-content');
 
-        // Handle "View Portfolio" button click
+        // Ensure critical elements exist
+        if (!enterButton || !welcomeScreen || !mainContent) {
+            console.error("Critical elements not found!");
+            return;
+        }
+
         enterButton.addEventListener('click', () => {
-            welcomeScreen.classList.add('hidden');
-            mainContent.classList.remove('hidden');
+            // 1. Fade out welcome screen
+            welcomeScreen.style.transition = 'opacity 0.5s ease';
+            welcomeScreen.style.opacity = '0';
+            
+            // 2. After fade completes, hide it and show main content
+            setTimeout(() => {
+                welcomeScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                
+                // 3. Scroll to top smoothly
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // 4. Trigger any animations on main content
+                gsap.from('#main-content', {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                });
+            }, 500); // Match this with CSS transition time
         });
 
         // Theme Toggle Functionality
