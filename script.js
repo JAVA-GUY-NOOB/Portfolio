@@ -1,40 +1,32 @@
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM loaded - checking elements:");
+    console.log("Enter button:", document.getElementById('enter-button'));
+    console.log("Welcome screen:", document.getElementById('welcome-screen'));
+    console.log("Main content:", document.getElementById('main-content'));
+    
+    // Rest of your code...
+});
 try {
     document.addEventListener('DOMContentLoaded', () => {
         const enterButton = document.getElementById('enter-button');
         const welcomeScreen = document.getElementById('welcome-screen');
         const mainContent = document.getElementById('main-content');
 
-        // Ensure critical elements exist
-        if (!enterButton || !welcomeScreen || !mainContent) {
-            console.error("Critical elements not found!");
-            return;
+        if (enterButton && welcomeScreen && mainContent) {
+            enterButton.addEventListener('click', () => {
+                // Fade out the welcome screen
+                welcomeScreen.style.opacity = '0';
+                
+                // After the fade-out animation, hide the welcome screen and show the main content
+                setTimeout(() => {
+                    welcomeScreen.classList.add('hidden');
+                    mainContent.classList.remove('hidden');
+                    window.scrollTo(0, 0); // Scroll to the top of the page
+                }, 500); // Match this with the CSS transition duration
+            });
+        } else {
+            console.error("Missing critical elements!");
         }
-
-        enterButton.addEventListener('click', () => {
-            // 1. Fade out welcome screen
-            welcomeScreen.style.transition = 'opacity 0.5s ease';
-            welcomeScreen.style.opacity = '0';
-            
-            // 2. After fade completes, hide it and show main content
-            setTimeout(() => {
-                welcomeScreen.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-                
-                // 3. Scroll to top smoothly
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                
-                // 4. Trigger any animations on main content
-                gsap.from('#main-content', {
-                    opacity: 0,
-                    y: 20,
-                    duration: 0.8,
-                    ease: 'power2.out'
-                });
-            }, 500); // Match this with CSS transition time
-        });
 
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('theme-toggle');
