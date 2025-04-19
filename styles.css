@@ -267,28 +267,32 @@ body {
     backdrop-filter: blur(10px);
 }
 
+/* Project Cards Enhancements */
 .project-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform-style: preserve-3d;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
 }
 
 .project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.2s ease; /* Reduced duration */
-    will-change: transform;
+    transition: transform 0.5s;
 }
 
 .project-card:hover img {
-    transform: scale(1.02); /* Reduced scaling */
+    transform: scale(1.05);
 }
+
+/* Project Filters */
+.project-filters button.active {
+    background: var(--accent-color);
+    color: white;
+    font-weight: bold;
+}
+
 /* Ripple Effect */
 .ripple-effect {
     position: absolute;
@@ -401,6 +405,11 @@ body::after {
     .profile-image-container {
         margin: 0 auto;
     }
+    
+    .skill-bubble {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
 }
 
 /* Toast Notification */
@@ -488,4 +497,324 @@ body::after {
 .lazy.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Lazy Loading Fade-In Animation */
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+img.lazy.fade-in {
+    opacity: 1;
+}
+
+/* Submit Button Spinner */
+button[type="submit"] i.fa-spinner {
+    margin-right: 0.5rem;
+}
+
+/* Skills Section */
+.skills-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skill-item span {
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.skill-bar {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2); /* Updated background color */
+    border-radius: 5px;
+    margin: 10px 0; /* Added margin for spacing */
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    width: 0; /* Initial width for animation */
+    background: var(--accent-color);
+    border-radius: 5px;
+    transition: width 1.5s ease-out; /* Updated transition duration */
+}
+
+/* Skills Cloud */
+.skills-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.skill-bubble {
+    display: inline-block;
+    padding: 8px 15px; /* Adjusted padding */
+    margin: 5px; /* Added margin for spacing */
+    border-radius: 20px; /* Rounded corners */
+    background: var(--accent-color);
+    color: white;
+    font-size: 0.9rem; /* Adjusted font size */
+    transition: transform 0.3s; /* Smooth scaling effect */
+}
+
+.skill-bubble:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.skill-bubble::after {
+    content: attr(data-level) '%';
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    background: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-bubble:hover::after {
+    opacity: 1;
+}
+
+/* Modal Styles */
+.project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+
+.modal-content p {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.modal-links a {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.modal-links a:hover {
+    background: var(--primary-color);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Focus styles for keyboard navigation */
+.keyboard-nav a:focus, 
+.keyboard-nav button:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+    border-radius: 5px;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* Dynamic Text */
+#dynamic-text::after {
+    content: '|';
+    animation: blink 0.7s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Invalid input styles */
+input.invalid, textarea.invalid {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+input.invalid:focus, textarea.invalid:focus {
+    outline: none;
+    box-shadow: 0 0 5px red;
+}
+
+/* Enhanced Invalid Input Styles */
+.invalid {
+    border-color: #ff4444 !important; /* Bright red border for invalid inputs */
+    animation: shake 0.5s; /* Shake animation */
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Show the button on smaller screens */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: var(--glass-background);
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+        transform: translateY(-100%);
+    }
+
+    .nav-links.active {
+        display: flex;
+        transform: translateY(0);
+    }
+}
+
+/* Section Spacing */
+section {
+    padding: 80px 0; /* Top and bottom padding */
+    margin: 0 auto; /* Center the section */
+    max-width: 1200px; /* Limit the width */
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 50px 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: var(--accent-color);
+    z-index: 1000;
+    transition: width 0.2s ease-out;
+}
+
+/* Particles Container */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place behind other content */
+    background: #000; /* Optional: Set a background color */
 }

@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gideon Murimi - Full Stack Developer</title>
     <meta name="description" content="Professional Full Stack Developer specializing in modern web applications and performant user experiences">
+    
+    <!-- SEO Enhancements -->
+    <meta property="og:title" content="Gideon Murimi - Full Stack Java Developer">
+    <meta property="og:description" content="Professional portfolio showcasing Java, Spring Boot, and cloud projects">
     <meta property="og:image" content="social-preview.png">
-    <meta property="og:title" content="Gideon Murimi - Full Stack Developer">
+    <meta property="og:url" content="https://yourportfolio.com">
+    <meta name="theme-color" content="#4eccc4">
+    <meta name="keywords" content="Full Stack Developer, Java Developer, Spring Boot, Cloud Computing, React, Node.js, Portfolio">
+    <meta name="author" content="Gideon Murimi">
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -20,22 +28,97 @@
         ]
     }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+
+    <!-- Preload Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" as="style" onload="this.rel='stylesheet'">
+
+    <!-- Critical CSS -->
+    <style>
+        /* Critical above-the-fold CSS */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .welcome-content {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .welcome-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-pulse {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .skill-bubble {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://unpkg.com/@shoelace-style/shoelace/dist/themes/light.css">
+    <script type="module" src="https://unpkg.com/@shoelace-style/shoelace/dist/shoelace.js"></script>
 </head>
 <body>
-      <!-- Animated Background -->
-      <div class="particles" id="particles"></div>
-        <!-- Welcome Screen -->
-        <section id="welcome-screen" class="fade-in">
-            <div class="welcome-content">
-                <h1 class="text-pop">👋 Hi, I'm Gideon Murimi</h1>
-                <p id="dynamic-text" class="typewriter"></p>
-                <button id="enter-button" class="cta-pulse">View Portfolio</button>
-            </div>
-        </section>
-           <!-- Main Content -->
+    <a href="#main-content" class="skip-link">Skip to Content</a>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+    <!-- Welcome Screen -->
+    <section id="welcome-screen" class="fade-in">
+        <div class="welcome-content">
+            <h1 class="text-pop">👋 Hi, I'm Gideon Murimi</h1>
+            <p id="dynamic-text" class="typewriter"></p>
+            <button id="enter-button" class="cta-pulse">View Portfolio</button>
+        </div>
+    </section>
+    <!-- Main Content -->
     <main id="main-content" class="hidden">
         <header class="glass-header">
             <nav>
@@ -50,6 +133,12 @@
                     <li><a href="#contact" data-tab="contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <!--theme toggle button -->
             <button id="theme-toggle" aria-label="Toggle theme" class="theme-btn">🌙</button>
         </header>
@@ -58,217 +147,287 @@
             <p>🚀 Available for new projects! <button id="hire-me">Hire Me</button></p>
         </div>
     </main>
-          <!-- Main Sections -->
-          <section id="about" class="tab-content active glass-card">
-            <div class="profile-section">
-                <div class="profile-info">
-                    <h2>Full Stack Developer</h2>
-                    <p>Specializing in React, Node.js, and cloud-native applications.</p>
-                    <canvas id="skills-chart" width="400" height="400"></canvas>
+    <!-- Main Sections -->
+    <section id="about" class="tab-content active glass-card">
+        <div class="profile-section">
+            <div class="profile-info">
+                <h2>Full Stack Developer</h2>
+                <p>Specializing in React, Node.js, and cloud-native applications.</p>
+                <p>Experienced in building scalable and performant web applications using modern technologies.</p>
+                <p>Expert in React, Node.js, and cloud-native infrastructure.</p>
+                <p>Proficient in UI/UX design and development.</p>
+                <p>Strong problem-solving skills and attention to detail.</p>
+                <p>Ready to take on new challenges and collaborate with a dynamic team.</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <span>React</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Node.js</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>UI/UX</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>AWS</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Python</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>SQL</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="70%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Docker</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="65%"></div>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div class="skills-cloud">
+                <span class="skill-bubble" data-level="95">React</span>
+                <span class="skill-bubble" data-level="85">Node.js</span>
+                <span class="skill-bubble" data-level="90">UI/UX</span>
+                <span class="skill-bubble" data-level="75">AWS</span>
+                <span class="skill-bubble" data-level="80">Python</span>
+                <span class="skill-bubble" data-level="70">SQL</span>
+                <span class="skill-bubble" data-level="65">Docker</span>
+                <span class="skill-bubble" data-level="90">Java</span>
+                <span class="skill-bubble" data-level="85">Spring Boot</span>
+                <!-- Add more skills as needed -->
+            </div>
+        </div>
+    </section>
 
-        <section id="projects" class="tab-content glass-card">  
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <img src="project1.jpg" alt="Project 1" loading="lazy">
-                    <h3>E-Commerce Site</h3>
-                    <p>Built with React and Node.js</p>
-                    <a href="#" class="project-link">View Demo</a>
-                     </div>
-                     <!-- project2 card -->
-                    <div class="project-card"> 
-                        <img src="https://images.unsplash.com/photo-1556742205-e10c7506a3a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                             alt="E-Commerce Platform" loading="lazy">
-                        <div class="project-content">
-                            <h3>Next.js E-Commerce</h3>
-                            <div class="tech-tags">
-                                <span>Next.js</span>
-                                <span>TypeScript</span>
-                                <span>Stripe</span>
-                                <span>Tailwind</span>
-                            </div>
-                            <p>Full-stack e-commerce platform with real-time inventory management and Stripe integration. Handles 500+ daily transactions.</p>
-                            <div class="project-links">
-                                <a href="#" class="demo-link" aria-label="Live demo of E-Commerce project">Live Demo</a>
-                                <a href="#" class="code-link" aria-label="View source code for E-Commerce project">Source Code</a>
-                            </div>
- <!-- Social Media Dashboard project 3 -->
- <div class="project-card">
-    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-         alt="Social Media Dashboard" loading="lazy">
-    <div class="project-content">
-        <h3>Social Media Analytics</h3>
-        <div class="tech-tags">
-            <span>React</span>
-            <span>Node.js</span>
-            <span>MongoDB</span>
-            <span>D3.js</span>
+    <section id="projects" class="tab-content glass-card">  
+        <h2>Projects</h2>
+        <div class="project-filters">
+            <button onclick="filterProjects('all')">All</button>
+            <button onclick="filterProjects('React')">React</button>
+            <button onclick="filterProjects('Node')">Node.js</button>
+            <button onclick="filterProjects('Python')">Python</button>
         </div>
-        <p>Real-time social media dashboard tracking 10k+ users with data visualization and sentiment analysis features.</p>
-        <div class="project-links">
-            <a href="#" class="demo-link" aria-label="Live demo of Analytics project">Case Study</a>
-            <a href="#" class="code-link" aria-label="View source code for Analytics project">API Docs</a>
-                    <!-- AI Chat Application project 4 -->
+        <div class="project-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <img data-src="images/project1.jpg" alt="Project 1" class="lazy">
+                <h3>E-Commerce Site</h3>
+                <p>Built with React and Node.js</p>
+                <a href="https://demo-link.com" class="demo-link" target="_blank" aria-label="Live demo of E-Commerce site">Live Demo</a>
+                <a href="https://github.com/repo-link" class="code-link" target="_blank" aria-label="View source code of E-Commerce site">Source Code</a>
+            </div>
+            <!-- project2 card -->
+            <div class="project-card"> 
+                <img data-src="images/project2.jpg" alt="Project 2" class="lazy">
+                <div class="project-content">
+                    <h3>Next.js E-Commerce</h3>
+                    <div class="tech-tags">
+                        <span>Next.js</span>
+                        <span>TypeScript</span>
+                        <span>Stripe</span>
+                        <span>Tailwind</span>
+                    </div>
+                    <p>Full-stack e-commerce platform with real-time inventory management and Stripe integration. Handles 500+ daily transactions.</p>
+                    <div class="project-links">
+                        <a href="#" class="demo-link" aria-label="Live demo of E-Commerce project">Live Demo</a>
+                        <a href="#" class="code-link" aria-label="View source code for E-Commerce project">Source Code</a>
+                    </div>
+                    <!-- Social Media Dashboard project 3 -->
                     <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1640836579090-86c5e0feadf3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                             alt="AI Chat Interface" loading="lazy">
+                        <img data-src="images/project3.jpg" alt="Project 3" class="lazy">
                         <div class="project-content">
-                            <h3>AI Chat Assistant</h3>
+                            <h3>Social Media Analytics</h3>
                             <div class="tech-tags">
-                                <span>Python</span>
-                                <span>TensorFlow</span>
-                                <span>WebSocket</span>
-                                <span>GPT-4</span>
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                                <span>D3.js</span>
                             </div>
-                            <p>Context-aware chatbot using transformer models with 95% accuracy in customer service scenarios.</p>
+                            <p>Real-time social media dashboard tracking 10k+ users with data visualization and sentiment analysis features.</p>
                             <div class="project-links">
-                                <a href="#" class="demo-link" aria-label="Try AI Chat prototype">Try Prototype</a>
-                                <a href="#" class="code-link" aria-label="View research paper for AI project">White Paper</a>
-                    <!-- Portfolio Builder project 5 -->
-                    <div class="project-card">
-                        <h2>Portfolio Builder</h2> 
-<img src="images/your-photo.webp"
-        alt="[Gideon Kimani Murimi] smiling in professional attire"
-        class="profile-photo"
-        loading="eager"
-        width="600"
-        height="600">
-        <p>Portfolio Builder is a web application that allows users to create and manage their personal portfolios with ease. It provides a user-friendly interface, customizable templates, and integration with various APIs to showcase projects and skills.</p>
-        <img srcset="images/your-photo-600.webp 600w,
-             images/your-photo-300.webp 300w"
-     sizes="(max-width: 768px) 300px,
-            600px"
-     src="images/your-photo-600.webp"
-     alt="Professional headshot">
+                                <a href="#" class="demo-link" aria-label="Live demo of Analytics project">Case Study</a>
+                                <a href="#" class="code-link" aria-label="View source code for Analytics project">API Docs</a>
+                                <!-- AI Chat Application project 4 -->
+                                <div class="project-card">
+                                    <img src="https://images.unsplash.com/photo-1640836579090-86c5e0feadf3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                                         alt="AI Chat Interface" loading="lazy">
+                                    <div class="project-content">
+                                        <h3>AI Chat Assistant</h3>
+                                        <div class="tech-tags">
+                                            <span>Python</span>
+                                            <span>TensorFlow</span>
+                                            <span>WebSocket</span>
+                                            <span>GPT-4</span>
+                                        </div>
+                                        <p>Context-aware chatbot using transformer models with 95% accuracy in customer service scenarios.</p>
+                                        <div class="project-links">
+                                            <a href="#" class="demo-link" aria-label="Try AI Chat prototype">Try Prototype</a>
+                                            <a href="#" class="code-link" aria-label="View research paper for AI project">White Paper</a>
+                                            <!-- Portfolio Builder project 5 -->
+                                            <div class="project-card">
+                                                <h2>Portfolio Builder</h2> 
+                                                <img src="images/your-photo.webp"
+                                                    alt="[Gideon Kimani Murimi] smiling in professional attire"
+                                                    class="profile-photo"
+                                                    loading="eager"
+                                                    width="600"
+                                                    height="600">
+                                                <p>Portfolio Builder is a web application that allows users to create and manage their personal portfolios with ease. It provides a user-friendly interface, customizable templates, and integration with various APIs to showcase projects and skills.</p>
+                                                <img srcset="images/your-photo-600.webp 600w,
+                                                    images/your-photo-300.webp 300w"
+                                                    sizes="(max-width: 768px) 300px,
+                                                    600px"
+                                                    src="images/your-photo-600.webp"
+                                                    alt="Professional headshot">
 
-     <img srcset="profile-600.webp 600w,
-             profile-300.webp 300w"
-     sizes="(max-width: 768px) 300px,
-            600px"
-     src="profile-600.webp"
-     alt="Professional web developer gideon murimi">
-     <!-- Abstract avatar -->
-<img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=JohnDoe" 
-alt="Temporary avatar for Gideon murimi"
-class="profile-photo">       
-<p>A platform to create and manage your personal portfolio with ease.</p>
-<div class="project-links">
-    <a href="#" class="demo-link" aria-label="View live demo of Portfolio Builder">View Demo</a>
-    <a href="#" class="code-link" aria-label="View source code for Portfolio Builder">GitHub Repo</a>
-</div>
-<!-- Initials avatar -->
-<div class="avatar-placeholder">
-<span style="font-family: 'Poppins', sans-serif; font-size: 4rem; font-weight: bold; color: #ffffff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
-    GM
-</span>
-</div>
-<div class="bubbles-container">
-    <div class="bubble" data-tab="about" role="button" aria-label="About Me section">About Me</div>
-    <div class="bubble" data-tab="projects" role="button" aria-label="Projects section">Projects</div>
-    <div class="bubble" data-tab="contact" role="button" aria-label="Contact section">Contact</div>
-</div>
-<div id="live-region" aria-live="polite" class="sr-only"></div>
-<div class="tech-tags">
-    <span>SvelteKit</span>
-    <span>Firebase</span>
-    <span>AWS</span>
-    <span>Figma</span>
-    <span>Next.js</span>
-    <span>React</span>
-    <span>Typescript</span>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>Git</span>
-    <span>GitHub</span>
-    <span>Web3</span>
-    <span>Blockchain</span>
-    <span>AI</span>
-    <span>Machine Learning</span>
-    <span>Python</span>
-    <span>Node.js</span>
-    <span>Express</span>
-    <span>MongoDB</span>
-    <span>PostgreSQL</span>
-    <span>MySQL</span>
-</div>
-</div>
-</div></div>section>
+                                                <img srcset="profile-600.webp 600w,
+                                                    profile-300.webp 300w"
+                                                    sizes="(max-width: 768px) 300px,
+                                                    600px"
+                                                    src="profile-600.webp"
+                                                    alt="Professional web developer gideon murimi">
+                                                <!-- Abstract avatar -->
+                                                <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=JohnDoe" 
+                                                alt="Temporary avatar for Gideon murimi"
+                                                class="profile-photo">       
+                                                <p>A platform to create and manage your personal portfolio with ease.</p>
+                                                <div class="project-links">
+                                                    <a href="#" class="demo-link" aria-label="View live demo of Portfolio Builder">View Demo</a>
+                                                    <a href="#" class="code-link" aria-label="View source code for Portfolio Builder">GitHub Repo</a>
+                                                </div>
+                                                <!-- Initials avatar -->
+                                                <div class="avatar-placeholder">
+                                                    <span style="font-family: 'Poppins', sans-serif; font-size: 4rem; font-weight: bold; color: #ffffff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                                                        GM
+                                                    </span>
+                                                </div>
+                                                <div class="bubbles-container">
+                                                    <div class="bubble" data-tab="about" role="button" aria-label="About Me section">About Me</div>
+                                                    <div class="bubble" data-tab="projects" role="button" aria-label="Projects section">Projects</div>
+                                                    <div class="bubble" data-tab="contact" role="button" aria-label="Contact section">Contact</div>
+                                                </div>
+                                                <div id="live-region" aria-live="polite" class="sr-only"></div>
+                                                <div class="tech-tags">
+                                                    <span>SvelteKit</span>
+                                                    <span>Firebase</span>
+                                                    <span>AWS</span>
+                                                    <span>Figma</span>
+                                                    <span>Next.js</span>
+                                                    <span>React</span>
+                                                    <span>Typescript</span>
+                                                    <span>HTML</span>
+                                                    <span>CSS</span>
+                                                    <span>JavaScript</span>
+                                                    <span>Git</span>
+                                                    <span>GitHub</span>
+                                                    <span>Web3</span>
+                                                    <span>Blockchain</span>
+                                                    <span>AI</span>
+                                                    <span>Machine Learning</span>
+                                                    <span>Python</span>
+                                                    <span>Node.js</span>
+                                                    <span>Express</span>
+                                                    <span>MongoDB</span>
+                                                    <span>PostgreSQL</span>
+                                                    <span>MySQL</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- Contact Section -->
-<section id="contact" class="tab-content glass-card">
-    <!-- Add to contact section -->
-    <div class="social-proof">
-        <p>Trusted by:</p>
-        <div class="client-logos">
-            <img src="client1.svg" alt="Client 1 Logo">
-            <img src="client2.svg" alt="Client 2 Logo">
         </div>
-    </div>
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h2>Let's Connect</h2>
-                        <div class="social-links">
-                            <a href="https://linkedin.com/in/gideonmurimi" target="_blank" class="social-btn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/gideonmurimi" target="_blank" class="social-btn">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="mailto:hello@gideonmurimi.com" class="social-btn">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                        </div>
-    <!-- Add before contact form -->
-    <section class="testimonials">
-        <h3>Client Testimonials</h3>
-        <div class="testimonial-carousel">
-            <div class="testimonial-item">
-                <p>"Gideon transformed our web presence. Highly recommend!"</p>
-                <cite>- Client A</cite>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="tab-content glass-card">
+        <!-- Add to contact section -->
+        <div class="social-proof">
+            <p>Trusted by:</p>
+            <div class="client-logos">
+                <img src="client1.svg" alt="Client 1 Logo">
+                <img src="client2.svg" alt="Client 2 Logo">
             </div>
-            <div class="testimonial-item">
-                <p>"Gideon's expertise in web development is exceptional. Highly recommend!"</p>
-                <cite>- Client B</cite>
-            </div>
-            <div class="testimonial-item">
-                <p>"Gideon's attention to detail is impressive. Highly recommend!"</p>
-                <cite>- Client C</cite>
         </div>
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Your name" required></div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="enter your email" required aria-label="Email Address"></div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" placeholder="Leave a message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="cta-btn">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button> type="submit">Send</button>
-                    </form>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Let's Connect</h2>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/gideonmurimi" target="_blank" class="social-btn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/gideonmurimi" target="_blank" class="social-btn">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:hello@gideonmurimi.com" class="social-btn">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
-            </section>
+                <!-- Add before contact form -->
+                <section class="testimonials">
+                    <h3>Client Testimonials</h3>
+                    <div class="testimonial-carousel">
+                        <div class="testimonial-item">
+                            <p>"Gideon transformed our web presence. Highly recommend!"</p>
+                            <cite>- Client A</cite>
+                        </div>
+                        <div class="testimonial-item">
+                            <p>"Gideon's expertise in web development is exceptional. Highly recommend!"</p>
+                            <cite>- Client B</cite>
+                        </div>
+                        <div class="testimonial-item">
+                            <p>"Gideon's attention to detail is impressive. Highly recommend!"</p>
+                            <cite>- Client C</cite>
+                        </div>
+                    </div>
+                </section>
+                <form id="contactForm" class="contact-form">
+                    <sl-input label="Name" placeholder="Your name" required></sl-input>
+                    <sl-input type="email" label="Email" placeholder="Your email" required></sl-input>
+                    <sl-textarea label="Message" placeholder="Leave a message" rows="5" required></sl-textarea>
+                    <sl-button type="submit" variant="primary" size="large">
+                        <span>Send Message</span>
+                        <sl-icon name="send"></sl-icon>
+                    </sl-button>
+                </form>
+                <sl-dialog label="Contact Form Submitted" class="dialog-overview">
+                    <p>Your message has been sent successfully!</p>
+                    <sl-button slot="footer" variant="primary" @click="this.closest('sl-dialog').hide()">Close</sl-button>
+                </sl-dialog>
             </div>
         </div>
-</main>
+    </section>
     <!-- Loading Screen -->
     <div id="loader" class="loader">
         <div class="loader-spinner"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
