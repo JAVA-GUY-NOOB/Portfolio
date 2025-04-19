@@ -393,16 +393,16 @@ try {
         });
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const skillBarsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 animateSkillBars();
-                observer.unobserve(skillsContainer); // Stop observing after animation
+                skillBarsObserver.unobserve(skillsContainer); // Stop observing after animation
             }
         });
     }, { threshold: 0.5 });
 
-    observer.observe(skillsContainer);
+    skillBarsObserver.observe(skillsContainer);
 
     // Animate skill bubbles
     const skillBubbles = document.querySelectorAll('.skill-bubble');
