@@ -846,3 +846,19 @@ section {
     z-index: -1; /* Place behind other content */
     background: #000; /* Optional: Set a background color */
 }
+
+/* Brand Logo */
+.brand-logo {
+    width: 200px;
+    height: 250px; /* Adjust size as needed */
+    display: inline-block;
+    margin-right: 30px;
+}
+
+/* Header Brand */
+.header-brand {
+    background-image: url('images/logo.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
