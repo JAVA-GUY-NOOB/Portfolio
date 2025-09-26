@@ -467,45 +467,10 @@ try {
         setTimeout(() => toast.remove(), 3000);
     };
 
-    // Enhanced typewriter effect
-    const typeWriter = (elementId, texts, speed = 100) => {
-        let currentText = 0;
-        let charIndex = 0;
-        const element = document.getElementById(elementId);
-        let isDeleting = false;
-        
-        const type = () => {
-            const currentString = texts[currentText];
-            
-            if (!isDeleting && charIndex <= currentString.length) {
-                element.textContent = currentString.substring(0, charIndex);
-                charIndex++;
-                setTimeout(type, speed);
-            } else if (isDeleting && charIndex >= 0) {
-                element.textContent = currentString.substring(0, charIndex);
-                charIndex--;
-                setTimeout(erase, speed/2);
-            } else {
-                isDeleting = !isDeleting;
-                if (!isDeleting) currentText = (currentText + 1) % texts.length;
-                setTimeout(type, isDeleting ? 1000 : 500);
-            }
-        };
-        
-        type();
-    };
-
-    // Initialize typing animation for the welcome screen
-    typeWriter('dynamic-text', [
-        'Full Stack Developer', 
-        'Java Specialist', 
-        'Spring Boot Expert', 
-        'Cloud Enthusiast'
-    ]);
-
     // Hide loader after page load
     window.addEventListener('load', () => {
-        document.getElementById('loader').style.display = 'none';
+        const loader = document.getElementById('loader');
+        if (loader) loader.style.display = 'none';
     });
 
     // Lazy loading for sections
