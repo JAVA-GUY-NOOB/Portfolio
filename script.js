@@ -467,45 +467,10 @@ try {
         setTimeout(() => toast.remove(), 3000);
     };
 
-    // Enhanced typewriter effect
-    const typeWriter = (elementId, texts, speed = 100) => {
-        let currentText = 0;
-        let charIndex = 0;
-        const element = document.getElementById(elementId);
-        let isDeleting = false;
-        
-        const type = () => {
-            const currentString = texts[currentText];
-            
-            if (!isDeleting && charIndex <= currentString.length) {
-                element.textContent = currentString.substring(0, charIndex);
-                charIndex++;
-                setTimeout(type, speed);
-            } else if (isDeleting && charIndex >= 0) {
-                element.textContent = currentString.substring(0, charIndex);
-                charIndex--;
-                setTimeout(erase, speed/2);
-            } else {
-                isDeleting = !isDeleting;
-                if (!isDeleting) currentText = (currentText + 1) % texts.length;
-                setTimeout(type, isDeleting ? 1000 : 500);
-            }
-        };
-        
-        type();
-    };
-
-    // Initialize typing animation for the welcome screen
-    typeWriter('dynamic-text', [
-        'Full Stack Developer', 
-        'Java Specialist', 
-        'Spring Boot Expert', 
-        'Cloud Enthusiast'
-    ]);
-
     // Hide loader after page load
     window.addEventListener('load', () => {
-        document.getElementById('loader').style.display = 'none';
+        const loader = document.getElementById('loader');
+        if (loader) loader.style.display = 'none';
     });
 
     // Lazy loading for sections
@@ -702,10 +667,198 @@ try {
             navLinks.classList.remove('active');
         }
     });
+
+    // ===== RICE E-COMMERCE FUNCTIONALITY =====
+    
+    // Shopping Cart functionality
+    class ShoppingCart {
+        constructor() {
+            this.items = JSON.parse(localStorage.getItem('cart')) || [];
+            this.updateCartDisplay();
+            this.bindEvents();
+        }
+        
+        addItem(product, price) {
+            const existingItem = this.items.find(item => item.product === product);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                this.items.push({
+                    product: product,
+                    price: parseFloat(price),
+                    quantity: 1
+                });
+            }
+            this.saveCart();
+            this.updateCartDisplay();
+            this.showToast(`Added ${product} rice to cart!`, 'success');
+        }
+        
+        removeItem(product) {
+            this.items = this.items.filter(item => item.product !== product);
+            this.saveCart();
+            this.updateCartDisplay();
+        }
+        
+        updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            if (!cartItems || !cartTotal) return;
+            
+            if (this.items.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = 'Total: $0.00';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            this.items.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <strong>${item.product.charAt(0).toUpperCase() + item.product.slice(1)} Rice</strong>
+                            <br>Quantity: ${item.quantity}
+                        </div>
+                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                        <button class="cart-item-remove" onclick="cart.removeItem('${item.product}')">Remove</button>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = html;
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+        }
+        
+        saveCart() {
+            localStorage.setItem('cart', JSON.stringify(this.items));
+        }
+        
+        bindEvents() {
+            // Add to cart buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const product = e.target.getAttribute('data-product');
+                    const price = e.target.getAttribute('data-price');
+                    this.addItem(product, price);
+                }
+            });
+            
+            // Checkout button
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', () => {
+                    if (this.items.length === 0) {
+                        this.showToast('Your cart is empty!', 'error');
+                        return;
+                    }
+                    this.showToast('Checkout functionality coming soon!', 'info');
+                });
+            }
+        }
+        
+        showToast(message, type = 'info') {
+            // Simple toast notification
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            switch(type) {
+                case 'success':
+                    toast.style.backgroundColor = '#28a745';
+                    break;
+                case 'error':
+                    toast.style.backgroundColor = '#dc3545';
+                    break;
+                case 'info':
+                default:
+                    toast.style.backgroundColor = '#6c757d';
+            }
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    }
+    
+    // Initialize shopping cart
+    const cart = new ShoppingCart();
+    window.cart = cart; // Make it globally accessible
+    
+    // Update typewriter text for rice business
+    const riceTexts = [
+        "Premium Quality Rice Direct from Farm",
+        "Organic • Basmati • Jasmine • Brown Rice",
+        "Fast Delivery • Best Prices Guaranteed",
+        "Join 10,000+ Satisfied Customers"
+    ];
+    
+    let currentTextIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const typeSpeed = 100;
+    const deleteSpeed = 50;
+    const delayBetweenTexts = 2000;
+    
+    function typeWriter() {
+        const dynamicText = document.getElementById('dynamic-text');
+        if (!dynamicText) return;
+        
+        const currentText = riceTexts[currentTextIndex];
+        
+        if (isDeleting) {
+            currentCharIndex--;
+            dynamicText.textContent = currentText.substring(0, currentCharIndex);
+            
+            if (currentCharIndex === 0) {
+                isDeleting = false;
+                currentTextIndex = (currentTextIndex + 1) % riceTexts.length;
+                setTimeout(typeWriter, typeSpeed);
+            } else {
+                setTimeout(typeWriter, deleteSpeed);
+            }
+        } else {
+            currentCharIndex++;
+            dynamicText.textContent = currentText.substring(0, currentCharIndex);
+            
+            if (currentCharIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeWriter, delayBetweenTexts);
+            } else {
+                setTimeout(typeWriter, typeSpeed);
+            }
+        }
+    }
+    
+    // Start typewriter effect
+    setTimeout(typeWriter, 1000);
+
 } catch (error) {
     console.error('Portfolio error:', error);
-    showToast('Something went wrong. Please refresh.', 'error');
+    if (typeof showToast === 'function') {
+        showToast('Something went wrong. Please refresh.', 'error');
+    }
 
     // Fallback content
-    document.getElementById('main-content').classList.remove('hidden');
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+        mainContent.classList.remove('hidden');
+    }
 }
