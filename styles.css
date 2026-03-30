@@ -862,3 +862,205 @@ section {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* ===== RICE E-COMMERCE SPECIFIC STYLES ===== */
+
+/* Price Tag Styling */
+.price-tag {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c5530;
+    background: linear-gradient(45deg, #90EE90, #32CD32);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Shopping Cart Styling */
+#shopping-cart {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#shopping-cart h3 {
+    color: #2c5530;
+    margin-bottom: 1rem;
+}
+
+#cart-items {
+    min-height: 50px;
+    margin-bottom: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-price {
+    font-weight: bold;
+    color: #2c5530;
+}
+
+.cart-item-remove {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+#cart-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 1rem;
+    color: #2c5530;
+}
+
+/* Button Styling for E-commerce */
+.add-to-cart, .view-details {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.25rem;
+}
+
+.add-to-cart {
+    background: #28a745;
+    color: white;
+}
+
+.add-to-cart:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.view-details {
+    background: #6c757d;
+    color: white;
+}
+
+.view-details:hover {
+    background: #545b62;
+    transform: translateY(-2px);
+}
+
+/* Trust Badges */
+.trust-badge {
+    display: inline-block;
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin: 0.25rem;
+    font-size: 0.9rem;
+    color: #28a745;
+    border: 2px solid #28a745;
+}
+
+/* Contact Items for Business */
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #28a745;
+    margin-right: 1rem;
+    min-width: 30px;
+}
+
+.contact-item h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-dark);
+}
+
+.contact-item p {
+    margin: 0;
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #28a745;
+}
+
+/* Update color theme for rice business */
+:root {
+    --primary-color: #8B4513; /* Saddle brown for rice theme */
+    --secondary-color: #D2691E; /* Chocolate for accents */
+    --accent-color: #32CD32; /* Lime green for highlights */
+    --text-light: #ffffff;
+    --text-dark: #2F4F2F; /* Dark slate gray */
+    --bg-light: #FAF0E6; /* Linen background */
+    --bg-dark: #8B4513;
+    --card-bg: rgba(250, 240, 230, 0.9);
+    --header-bg: rgba(139, 69, 19, 0.1);
+    --gradient-primary: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    --gradient-secondary: linear-gradient(45deg, #32CD32, #228B22);
+}
+
+/* Toast Notifications */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast {
+    animation: slideIn 0.3s ease;
+}
